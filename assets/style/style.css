@@ -1,3 +1,22 @@
 .logoAmazing {
     height: 3rem;
 }
+
+.text-bg {
+    background-color: #d90468;
+    color: white;
+}
+
+.text-center {
+    height: 28rem;
+    font-size: 5.5rem !important;
+}
+
+.carousel-item {
+    height: 30rem;
+}
+
+.card-img {
+    height: 12rem;
+    width: 12rem;
+}
