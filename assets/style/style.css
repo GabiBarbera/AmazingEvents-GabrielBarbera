@@ -16,6 +16,11 @@
     height: 50vh;
 }
 
+.carousel-item img {
+    height: 100%;
+}
+
+
 .card-img {
     height: 12rem;
     width: 12rem;

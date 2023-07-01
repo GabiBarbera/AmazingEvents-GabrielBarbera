@@ -51,13 +51,13 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="../images/costume_party.jpg" class=" d-block w-100" alt="clowns">
+                        <img src="../images/optional_banner_3.jpg" class=" d-block w-100 object-fit-cover" alt="clowns">
                     </div>
                     <div class="carousel-item">
-                        <img src="../images/music_concert.jpg" class="d-block w-100" alt="concert">
+                        <img src="../images/music_concert.jpg" class="d-block w-100 object-fit-cover" alt="concert">
                     </div>
                     <div class="carousel-item">
-                        <img src="../images/optional_banner_1.jpg" class="d-block w-100" alt="food">
+                        <img src="../images/optional_banner_5.jpg" class="d-block w-100 object-fit-cover" alt="food">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -73,17 +73,20 @@
             </div>
         </section>
         <div class="d-flex w-100 justify-content-center m-5">
-            <div class="d-flex flex-column gap-1">
-                <label for="">Name</label>
-                <input type="text" name="" id="">
+            <form action="../showdata/show_data.html" method="get">
+                <div class="d-flex flex-column gap-1">
 
-                <label for="">Email:</label>
-                <input type="email">
+                    <label for="nameUser">Name</label>
+                    <input type="text" name="userName" id="nameUser">
 
-                <label for="coment">Message:</label>
-                <textarea class="backgroundInput3" name="comentUser" id="coment" cols="50" rows="5"></textarea>
-                <button class="w-25 justify-content-end" type="submit">Submit</button>
-            </div>
+                    <label for="emailUser">Email:</label>
+                    <input type="email" name="userEmail" id="emailUser">
+
+                    <label for="coment">Message:</label>
+                    <textarea class="backgroundInput3" name="comentUser" id="coment" cols="50" rows="5"></textarea>
+                    <button class="w-25 justify-content-end" type="submit">Submit</button>
+                </div>
+            </form>
         </div>
     </main>
     <footer class="d-flex col-12">
