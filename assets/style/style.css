@@ -7,9 +7,10 @@
     color: white;
 }
 
-.text-center {
+h1 {
+    color: #37f637;
     height: 24rem;
-    font-size: 5.5rem !important;
+    font-size: 3.5rem !important;
 }
 
 .carousel-item {
@@ -20,9 +21,6 @@
     height: 100%;
 }
 
-/* .w-25 {
-    width: 18% !important;
-} */
 
 .card-img {
     height: 12rem;
