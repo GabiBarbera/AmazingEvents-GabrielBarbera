@@ -1,4 +1,5 @@
 let container = document.getElementById("allCards")
+const allEvents = data.events
 
 function createLetters(object) {
     return ` <div class="card col-md-2 float-md-end mb-3 ms-md-3 bg-success shadow-lg p-3 mb-5 bg-body-success rounded">
@@ -16,7 +17,7 @@ function createLetters(object) {
 
 
 function showCards() {
-    for (let info of data.events) {
+    for (let info of allEvents) {
         container.innerHTML += createLetters(info)
     }
 }
