@@ -14,13 +14,14 @@ function createLetters(object) {
       </div>
   </div>`
 }
-
+const dateEvent = data.currentDate
+const upcomingEvents = data.events
 
 function showCards() {
-    for (let info of data.events) {
-        if (data.date > data.currentDate) {
+    for (events of upcomingEvents) {
+        if (events.date >= dateEvent) {
+            container.innerHTML += createLetters(events)
         }
-        container.innerHTML += createLetters(info)
     }
 }
 showCards()
