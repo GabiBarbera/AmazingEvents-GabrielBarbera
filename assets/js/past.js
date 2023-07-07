@@ -1,5 +1,8 @@
 
 let container = document.getElementById("pastCards")
+const dateEvent = data.currentDate
+const upcomingEvents = data.events
+
 
 function createLetters(object) {
     return ` <div class="card col-md-2 float-md-end mb-3 ms-md-3 bg-success shadow-lg p-3 mb-5 bg-body-success rounded">
@@ -14,15 +17,15 @@ function createLetters(object) {
       </div>
   </div>`
 }
-const dateEvent = data.currentDate
-const upcomingEvents = data.events
 
-function showCards() {
-    for (events of upcomingEvents) {
-        if (events.date <= dateEvent) {
-            container.innerHTML += createLetters(events)
+function showCards(array, date, place) {
+    let template = " "
+    for (events of array) {
+        if (events.date <= date) {
+            template += createLetters(events)
         }
     }
+    place.innerHTML += template
 }
-showCards()
-console.log("hola")
+showCards(upcomingEvents, dateEvent, container)
+

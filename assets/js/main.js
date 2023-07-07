@@ -16,9 +16,9 @@ function createLetters(object) {
 }
 
 
-function showCards() {
-    for (let info of allEvents) {
+function showCards(arrayEvent) {
+    for (let info of arrayEvent) {
         container.innerHTML += createLetters(info)
     }
 }
-showCards()
+showCards(allEvents)
