@@ -1,7 +1,11 @@
-let container = document.getElementById("allCards")
+const container = document.getElementById("allCards")
 const allEvents = data.events
-let form = document.getElementById("form")
-let searchInput = document.getElementById("search")
+let categories = allEvents.map(category => category.category)
+let nonRepeatingCategories = new Set(categories)
+let nonRepeatinArray = Array.from(nonRepeatingCategories)
+const inputsLabels = document.getElementById("allInputs")
+
+
 
 
 
@@ -27,4 +31,42 @@ function showCards(arrayEvent) {
 }
 showCards(allEvents)
 
+function createSearch() {
+    return `<input type="search" name="search" id="search" placeholder="Search 🔎" class="ms-5">`
+}
+
+function showSearch(where) {
+    where.innerHTML = createSearch()
+}
+
+showSearch(inputsLabels)
+
+function createInputs(category) {
+    return `<div>
+    <input type="checkbox" name="checkCategory" id="${category}" value="${category}">
+    <label for="${category}">${category}</label>
+    </div>`
+}
+
+function showInputs(array, where) {
+    for (let element of array) {
+        where.innerHTML += createInputs(element)
+    }
+}
+
+showInputs(nonRepeatinArray, inputsLabels)
+
+const searchInput = document.getElementById("search")
 searchInput.addEventListener("input", (e) => { console.log(e.target.value) })
+
+
+let checkbox = document.querySelectorAll("input[type='checkbox']")
+
+inputsLabels.addEventListener("change", (e) => {
+    filterByCategories(categories, e.target.value)
+})
+
+function filterByCategories(list, category) {
+    const aux = list.filter(categories => categories.category == category)
+    console.log(aux)
+}
