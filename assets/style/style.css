@@ -27,14 +27,19 @@ h1 {
     width: 12rem;
 }
 
-#allCards>div {
-    background-color: #136b42c9 !important;
-}
-
-#upcomingCards>div {
-    background-color: #136b42c9 !important;
-}
-
+#allCards>div,
+#upcomingCards>div,
 #pastCards>div {
-    background-color: #136b42c9 !important;
+    background-color: #136b42c9;
+}
+
+
+#details>div {
+    background-color: #136b42c9;
+    flex-direction: row;
+}
+
+.card-details {
+    height: 100% !important;
+    width: 50% !important;
 }

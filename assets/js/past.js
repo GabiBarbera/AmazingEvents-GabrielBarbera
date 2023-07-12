@@ -16,7 +16,7 @@ function createLetters(object) {
       <p class="card-text">${object.description}</p>
       <div class="d-flex justify-content-between align-items-center">
       <h6>US$${object.price}</h6>
-      <a href="../pages/details.html" class="btn btn-primary">Details</a>
+      <a href="../pages/details.html?parameter=${object._id}" class="btn btn-primary">Details</a>
           </div>
       </div>
   </div>`
