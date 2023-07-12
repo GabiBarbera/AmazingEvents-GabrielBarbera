@@ -10,7 +10,7 @@ const inputsLabels = document.getElementById("allInputs")
 
 
 function createLetters(object) {
-    return ` <div class="card col-md-2 float-md-end mb-3 ms-md-3 bg-success shadow-lg p-3 mb-5 rounded">
+    return ` <div class="card col-md-2 float-md-end mb-3 ms-md-3 shadow-lg p-3 mb-5 rounded">
     <img src="${object.image}" class="card-img w-100 object-fit-cover" alt="cinema">
     <div class="card-body d-flex flex-column justify-content-evenly">
     <h5 class="card-title align-self-center">${object.name}</h5>

@@ -26,3 +26,15 @@ h1 {
     height: 12rem;
     width: 12rem;
 }
+
+#allCards>div {
+    background-color: #136b42c9 !important;
+}
+
+#upcomingCards>div {
+    background-color: #136b42c9 !important;
+}
+
+#pastCards>div {
+    background-color: #136b42c9 !important;
+}
