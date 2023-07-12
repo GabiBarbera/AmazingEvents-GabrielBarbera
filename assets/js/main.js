@@ -60,13 +60,18 @@ const searchInput = document.getElementById("search")
 searchInput.addEventListener("input", (e) => { console.log(e.target.value) })
 
 
-let checkbox = document.querySelectorAll("input[type='checkbox']")
+inputsLabels.addEventListener("change", () => {
+    container.innerHTML = " "
+    let checkbox = document.querySelectorAll("input[type='checkbox']:checked")
+    let checkArray = []
+    checkbox.forEach(function (values) {
+        checkArray.push(values.value)
+    })
 
-inputsLabels.addEventListener("change", (e) => {
-    filterByCategories(categories, e.target.value)
+    let filterCheck = allEvents.filter(event => checkArray.includes(event.category) || checkArray.length == 0)
+    showCards(filterCheck, container)
 })
 
-function filterByCategories(list, category) {
-    const aux = list.filter(categories => categories.category == category)
-    console.log(aux)
-}
+
+
+
