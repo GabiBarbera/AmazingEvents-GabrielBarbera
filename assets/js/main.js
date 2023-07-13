@@ -5,10 +5,6 @@ let nonRepeatingCategories = new Set(categories)
 let nonRepeatinArray = Array.from(nonRepeatingCategories)
 const inputsLabels = document.getElementById("allInputs")
 
-
-
-
-
 function createLetters(object) {
     return ` <div class="card col-md-2 float-md-end mb-3 ms-md-3 shadow-lg p-3 mb-5 rounded">
     <img src="${object.image}" class="card-img w-100 object-fit-cover" alt="cinema">
@@ -22,7 +18,6 @@ function createLetters(object) {
     </div>
     </div>`
 }
-
 
 function showCards(arrayEvent) {
     for (let info of arrayEvent) {
@@ -58,7 +53,6 @@ showInputs(nonRepeatinArray, inputsLabels)
 
 const searchInput = document.getElementById("search")
 searchInput.addEventListener("input", (e) => { console.log(e.target.value) })
-
 
 inputsLabels.addEventListener("change", () => {
     container.innerHTML = " "

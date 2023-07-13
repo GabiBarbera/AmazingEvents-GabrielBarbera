@@ -7,7 +7,6 @@ let nonRepeatingCategories = new Set(categories)
 let nonRepeatinArray = Array.from(nonRepeatingCategories)
 const inputsLabels = document.getElementById("allInputs")
 
-
 function createLetters(object) {
     return ` <div class="card col-md-2 float-md-end mb-3 ms-md-3 shadow-lg p-3 mb-5 bg-body-success rounded">
       <img src="${object.image}" class="card-img w-100 object-fit-cover" alt="cinema">
@@ -62,7 +61,6 @@ showInputs(nonRepeatinArray, inputsLabels)
 const searchInput = document.getElementById("search")
 searchInput.addEventListener("input", (e) => { console.log(e.target.value) })
 
-
 inputsLabels.addEventListener("change", () => {
     container.innerHTML = " "
     let checkbox = document.querySelectorAll("input[type='checkbox']:checked")
@@ -70,7 +68,6 @@ inputsLabels.addEventListener("change", () => {
     checkbox.forEach(function (values) {
         checkArray.push(values.value)
     })
-
     let filterCheck = pastEvents.filter(event => checkArray.includes(event.category) || checkArray.length == 0)
     showCards(filterCheck, dateEvent, container)
 })
