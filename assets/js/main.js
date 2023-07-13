@@ -52,7 +52,17 @@ function showInputs(array, where) {
 showInputs(nonRepeatinArray, inputsLabels)
 
 const searchInput = document.getElementById("search")
-searchInput.addEventListener("input", (e) => { console.log(e.target.value) })
+searchInput.addEventListener("input", () => {
+    container.innerHTML = " "
+    let value = showValue(searchInput)
+    let event = allEvents.filter(event => event.name.toLowerCase().includes(value))
+    showCards(event, container)
+})
+
+function showValue(input) {
+    let valueInput = input.value.toLowerCase()
+    return valueInput
+}
 
 inputsLabels.addEventListener("change", () => {
     container.innerHTML = " "

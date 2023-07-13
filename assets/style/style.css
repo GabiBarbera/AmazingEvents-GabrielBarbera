@@ -3,8 +3,9 @@
 }
 
 h1 {
-    height: 24rem;
-    font-size: 3.5rem !important;
+    height: 16rem;
+    font-size: 4rem !important;
+    margin-bottom: 10.5rem;
 }
 
 .carousel-item {
