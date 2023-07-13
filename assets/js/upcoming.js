@@ -32,7 +32,7 @@ function showCards(array, date, place) {
 showCards(upcomingEvents, dateEvent, container)
 
 function createSearch() {
-    return `<input type="search" name="search" id="search" placeholder="Search 🔎" class="ms-5">`
+    return `<input type="search" name="search" id="search" placeholder="Search... 🔎" class="ms-5">`
 }
 
 function showSearch(where) {
@@ -57,7 +57,17 @@ function showInputs(array, where) {
 showInputs(nonRepeatinArray, inputsLabels)
 
 const searchInput = document.getElementById("search")
-searchInput.addEventListener("input", (e) => { console.log(e.target.value) })
+searchInput.addEventListener("input", () => {
+    container.innerHTML = " "
+    let value = showValue(searchInput)
+    let event = upcomingEvents.filter(event => event.name.toLowerCase().includes(value))
+    showCards(event, dateEvent, container)
+})
+
+function showValue(input) {
+    let valueInput = input.value.toLowerCase()
+    return valueInput
+}
 
 inputsLabels.addEventListener("change", () => {
     container.innerHTML = " "

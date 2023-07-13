@@ -27,7 +27,7 @@ function showCards(arrayEvent) {
 showCards(allEvents)
 
 function createSearch() {
-    return `<input type="search" name="search" id="search" placeholder="Search 🔎" class="ms-5">`
+    return `<input type="search" name="search" id="search" placeholder="Search... 🔎" class="ms-5">`
 }
 
 function showSearch(where) {
