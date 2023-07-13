@@ -2,13 +2,7 @@
     height: 5vh;
 }
 
-.text-bg {
-    background-color: #d90468;
-    color: white;
-}
-
 h1 {
-    color: #37f637;
     height: 24rem;
     font-size: 3.5rem !important;
 }

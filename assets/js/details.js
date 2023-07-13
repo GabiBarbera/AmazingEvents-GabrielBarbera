@@ -12,7 +12,8 @@ function createCardDetails(htmlElemnt, objectCard) {
                  alt="cinema">
              <div class="card-body d-flex flex-column justify-content-evenly border border-black ms-3 shadow rounded">
                  <h3 class="card-title align-self-center">${objectCard.name}</h3>
-                 <h4>2023-10-15</h4>
+                 <h4>${objectCard.date}</h4>
+                 <h5>${objectCard.category}</h5>
                  <h5 class="card-text">${objectCard.description}</h5>
                  <h5>${objectCard.place}</h5>
                     <div class="d-flex justify-content-between align-items-center">
