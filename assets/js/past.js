@@ -22,6 +22,9 @@ function createLetters(object) {
 
 function showCards(array, date, place) {
     let template = " "
+    if (array.length == 0) {
+        container.innerHTML = `<h2>ERROR: No match</h2>`
+    }
     for (events of array) {
         if (events.date <= date) {
             template += createLetters(events)
@@ -33,7 +36,7 @@ showCards(pastEvents, dateEvent, container)
 
 
 function createSearch() {
-    return `<input type="search" name="search" id="search" placeholder="Search... 🔎" class="ms-5">`
+    return `<input type="search" name="search" id="search" placeholder="Search... 🔎">`
 }
 
 function showSearch(where) {

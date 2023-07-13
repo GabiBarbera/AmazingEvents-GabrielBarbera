@@ -20,6 +20,9 @@ function createLetters(object) {
 }
 
 function showCards(arrayEvent) {
+    if (arrayEvent.length == 0) {
+        container.innerHTML = `<h2>❌ oops something went wrong ❌</h2>`
+    }
     for (let info of arrayEvent) {
         container.innerHTML += createLetters(info)
     }
@@ -27,7 +30,7 @@ function showCards(arrayEvent) {
 showCards(allEvents)
 
 function createSearch() {
-    return `<input type="search" name="search" id="search" placeholder="Search... 🔎" class="ms-5">`
+    return `<input type="search" name="search" id="search" placeholder="Search... 🔎">`
 }
 
 function showSearch(where) {
