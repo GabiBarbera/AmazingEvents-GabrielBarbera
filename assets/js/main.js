@@ -58,8 +58,8 @@ const searchInput = document.getElementById("search")
 searchInput.addEventListener("input", () => {
     container.innerHTML = " "
     let value = showValue(searchInput)
-    let event = allEvents.filter(event => event.name.toLowerCase().includes(value))
-    showCards(event, container)
+    let filterEvent = allEvents.filter(event => event.name.toLowerCase().includes(value))
+    showCards(filterEvent, container)
 })
 
 function showValue(input) {
@@ -79,6 +79,9 @@ inputsLabels.addEventListener("change", () => {
     showCards(filterCheck, container)
 })
 
-
-
+function crossFilter(listCategories, name, text) {
+    const filerByCheckbox = filterCheck(listCategories, name)
+    const filterByText = filterEvent(filerByCheckbox, text)
+    return filterByText
+}
 
