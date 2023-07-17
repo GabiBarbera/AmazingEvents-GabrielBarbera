@@ -71,11 +71,11 @@ searchInput.addEventListener("input", () => {
     let filterEvent = allEvents.filter(event => event.name.toLowerCase().includes(value))
     showCards(filterEvent, container)
 })
-
 function showValue(input) {
     let valueInput = input.value.toLowerCase()
     return valueInput
 }
+
 
 inputsLabels.addEventListener("change", () => {
     container.innerHTML = " "

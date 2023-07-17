@@ -8,17 +8,15 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
         let parameters = new URLSearchParams(parameter)
         let idparameters = parameters.get("parameter")
         allEvents = data.events
-        console.log(objectEvents);
+        let objectEvents = allEvents.find(idcards => idcards._id == idparameters)
         createCardDetails(containerCardDetails, objectEvents)
     })
     .catch(error => console.log(error))
 
-
-function createCardDetails(htmlElemnt, event) {
-    let objectCard = event.find(idcards => idcards._id === idparameters)
+function createCardDetails(htmlElemnt, objectCard) {
     htmlElemnt.innerHTML += `
-            <div class="card d-flex col-md-2 float-md-end mb-3 ms-md-3 shadow-lg p-3 rounded w-75">
-             <img src="${objectCard.image}" class="card-details object-fit-cover rounded shadow border border-black w-50"
+            <div class="card d-flex col-md-2 float-md-end mb-3 ms-md-3 shadow-lg p-3 rounded w-75" id="conteinerImageDetail">
+             <img src="${objectCard.image}" class="card-details object-fit-cover rounded shadow border border-black w-50" 
                  alt="cinema">
              <div class="card-body d-flex flex-column justify-content-evenly border border-black ms-3 shadow rounded">
                  <h3 class="card-title align-self-center">${objectCard.name}</h3>
