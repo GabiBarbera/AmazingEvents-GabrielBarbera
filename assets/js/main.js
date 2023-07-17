@@ -31,7 +31,7 @@ function createLetters(object) {
 
 function showCards(arrayEvent, place) {
     if (arrayEvent.length == 0) {
-        container.innerHTML = `<h2>❌ oops something went wrong ❌</h2>`
+        place.innerHTML = `<h2>❌ oops something went wrong ❌</h2>`
     }
     for (let info of arrayEvent) {
         place.innerHTML += createLetters(info)
