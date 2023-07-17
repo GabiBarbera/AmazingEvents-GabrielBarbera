@@ -74,11 +74,6 @@ function showInputs(array, where) {
     }
 }
 
-function showValue(input) {
-    let valueInput = input.value.toLowerCase()
-    return valueInput
-}
-
 function searchfilter(arrayEvents, text) {
     return arrayEvents.filter(event => event.name.toLowerCase().includes(text.toLowerCase()))
 }
