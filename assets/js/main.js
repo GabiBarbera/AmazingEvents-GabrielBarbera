@@ -12,19 +12,25 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
         let nonRepeatinArray = Array.from(nonRepeatingCategories)
         showCards(allEvents, container)
         showInputs(nonRepeatinArray, inputsLabels)
-        searchInput.addEventListener("input", () => {
-            container.innerHTML = " "
-            let filterCheck = checkFilter()
-            let value = showValue(searchInput)
-            let filterInput = crossFilter(filterCheck, value)
-            showCards(filterInput, container)
-        })
         inputsLabels.addEventListener("change", () => {
             container.innerHTML = " "
-            let filterCheck = checkFilter()
-            let values = showValue(searchInput)
-            let filterSearch = crossFilter(filterCheck, values)
-            showCards(filterSearch, container)
+            let checkbox = document.querySelectorAll("input[type='checkbox']:checked")
+            let checkArray = []
+            checkbox.forEach(function (values) {
+                checkArray.push(values.value)
+            })
+            let filter = crossFilter(allEvents, searchInput.value, checkArray)
+            showCards(filter, container)
+        })
+        searchInput.addEventListener("input", () => {
+            container.innerHTML = " "
+            let checkbox = document.querySelectorAll("input[type='checkbox']:checked")
+            let checkArray = []
+            checkbox.forEach(function (values) {
+                checkArray.push(values.value)
+            })
+            let filter = crossFilter(allEvents, searchInput.value, checkArray)
+            showCards(filter, container)
         })
     })
     .catch(error => console.log(error))
@@ -73,29 +79,19 @@ function showValue(input) {
     return valueInput
 }
 
-function searchfilter() {
-    let filterCheck = allEvents.filter(event => checkArray.includes(event.category) || checkArray.length == 0)
-    return filterCheck
+function searchfilter(arrayEvents, text) {
+    return arrayEvents.filter(event => event.name.toLowerCase().includes(text.toLowerCase()))
 }
 
-function checkFilter() {
-    let checkbox = document.querySelectorAll("input[type='checkbox']:checked")
-    let checkArray = []
-    checkbox.forEach(function (values) {
-        checkArray.push(values.value)
-    })
-    return checkArray
-}
-
-
-function crossFilter(listCategories, searchvalue) {
-    let crossFilter = allEvents;
-    if (listCategories.length > 0) {
-        crossFilter = crossFilter.filter(event => listCategories.includes(event.category))
+function checkFilter(eventList, categories) {
+    if (categories.length == 0) {
+        return eventList
     }
-    if (searchvalue) {
-        crossFilter = crossFilter.filter(event => event.name.toLowerCase().includes(searchvalue.toLowerCase()))
-    }
-    return crossFilter
+    return aux = eventList.filter(event => categories.includes(event.category) || categories.length == 0)
 }
 
+function crossFilter(eventList, searchvalue, categories) {
+    let checkFilter2 = checkFilter(eventList, categories)
+    let checkInput2 = searchfilter(checkFilter2, searchvalue)
+    return checkInput2
+}

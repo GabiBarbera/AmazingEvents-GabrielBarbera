@@ -14,11 +14,25 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
         let nonRepeatinArray = Array.from(nonRepeatingCategories)
         showCards(allEvents, currentDate, container)
         showInputs(nonRepeatinArray, inputsLabels)
+        inputsLabels.addEventListener("change", () => {
+            container.innerHTML = " "
+            let checkbox = document.querySelectorAll("input[type='checkbox']:checked")
+            let checkArray = []
+            checkbox.forEach(function (values) {
+                checkArray.push(values.value)
+            })
+            let filter = crossFilter(allEvents, searchInput.value, checkArray)
+            showCards(filter, currentDate, container)
+        })
         searchInput.addEventListener("input", () => {
             container.innerHTML = " "
-            let value = showValue(searchInput)
-            let event = allEvents.filter(event => event.name.toLowerCase().includes(value))
-            showCards(event, currentDate, container)
+            let checkbox = document.querySelectorAll("input[type='checkbox']:checked")
+            let checkArray = []
+            checkbox.forEach(function (values) {
+                checkArray.push(values.value)
+            })
+            let filter = crossFilter(allEvents, searchInput.value, checkArray)
+            showCards(filter, currentDate, container)
         })
     })
     .catch(error => console.log(error))
@@ -40,14 +54,16 @@ function createLetters(object) {
 function showCards(array, date, place) {
     let template = " "
     if (array.length == 0) {
-        container.innerHTML = `<h2>❌ oops something went wrong ❌</h2>`
-    }
-    for (events of array) {
-        if (events.date >= date) {
-            template += createLetters(events)
+        place.innerHTML = `<h2>❌ oops something went wrong ❌</h2>`
+    } else {
+        place.innerHTML += " "
+        for (events of array) {
+            if (events.date >= date) {
+                template += createLetters(events)
+            }
         }
+        place.innerHTML += template
     }
-    place.innerHTML += template
 }
 
 function createInputs(category) {
@@ -63,19 +79,20 @@ function showInputs(array, where) {
     }
 }
 
-function showValue(input) {
-    let valueInput = input.value.toLowerCase()
-    return valueInput
+function searchfilter(arrayEvents, text) {
+    return arrayEvents.filter(event => event.name.toLowerCase().includes(text.toLowerCase()))
 }
 
-inputsLabels.addEventListener("change", () => {
-    container.innerHTML = " "
-    let checkbox = document.querySelectorAll("input[type='checkbox']:checked")
-    let checkArray = []
-    checkbox.forEach(function (values) {
-        checkArray.push(values.value)
-    })
-    let filterCheck = allEvents.filter(event => checkArray.includes(event.category) || checkArray.length == 0)
-    showCards(filterCheck, currentDate, container)
-})
+function checkFilter(eventList, categories) {
+    if (categories.length == 0) {
+        return eventList
+    }
+    return aux = eventList.filter(event => categories.includes(event.category) || categories.length == 0)
+}
+
+function crossFilter(eventList, searchvalue, categories) {
+    let checkFilter2 = checkFilter(eventList, categories)
+    let checkInput2 = searchfilter(checkFilter2, searchvalue)
+    return checkInput2
+}
 
