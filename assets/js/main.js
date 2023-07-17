@@ -1,9 +1,15 @@
 const container = document.getElementById("allCards")
-const allEvents = data.events
-let categories = allEvents.map(category => category.category)
-let nonRepeatingCategories = new Set(categories)
-let nonRepeatinArray = Array.from(nonRepeatingCategories)
 const inputsLabels = document.getElementById("allInputs")
+let allEvents;
+
+
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    .then(answer => answer.json())
+    .then(data => {
+        allEvents = data.events
+        console.log(allEvents);
+    })
+    .catch(error => console.log(error))
 
 function createLetters(object) {
     return ` <div class="card col-md-2 float-md-end mb-3 ms-md-3 shadow-lg p-3 mb-5 rounded">

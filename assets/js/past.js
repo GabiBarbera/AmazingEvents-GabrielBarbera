@@ -23,7 +23,7 @@ function createLetters(object) {
 function showCards(array, date, place) {
     let template = " "
     if (array.length == 0) {
-        container.innerHTML = `<h2>ERROR: No match</h2>`
+        container.innerHTML = `<h2>❌ oops something went wrong ❌</h2>`
     }
     for (events of array) {
         if (events.date <= date) {
