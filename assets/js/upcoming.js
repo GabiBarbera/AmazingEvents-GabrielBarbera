@@ -1,5 +1,6 @@
 let container = document.getElementById("upcomingCards")
 const inputsLabels = document.getElementById("allInputs")
+const searchInput = document.getElementById("search")
 let allEvents;
 let currentDate;
 
@@ -13,6 +14,12 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
         let nonRepeatinArray = Array.from(nonRepeatingCategories)
         showCards(allEvents, currentDate, container)
         showInputs(nonRepeatinArray, inputsLabels)
+        searchInput.addEventListener("input", () => {
+            container.innerHTML = " "
+            let value = showValue(searchInput)
+            let event = allEvents.filter(event => event.name.toLowerCase().includes(value))
+            showCards(event, currentDate, container)
+        })
     })
     .catch(error => console.log(error))
 
@@ -43,17 +50,6 @@ function showCards(array, date, place) {
     place.innerHTML += template
 }
 
-
-function createSearch() {
-    return `<input type="search" name="search" id="search" placeholder="Search... 🔎">`
-}
-
-function showSearch(where) {
-    where.innerHTML = createSearch()
-}
-
-showSearch(inputsLabels)
-
 function createInputs(category) {
     return `<div>
     <input type="checkbox" name="checkCategory" id="${category}" value="${category}">
@@ -67,15 +63,6 @@ function showInputs(array, where) {
     }
 }
 
-
-const searchInput = document.getElementById("search")
-searchInput.addEventListener("input", () => {
-    container.innerHTML = " "
-    let value = showValue(searchInput)
-    let event = allEvents.filter(event => event.name.toLowerCase().includes(value))
-    showCards(event, currentDate, container)
-})
-
 function showValue(input) {
     let valueInput = input.value.toLowerCase()
     return valueInput
@@ -88,7 +75,6 @@ inputsLabels.addEventListener("change", () => {
     checkbox.forEach(function (values) {
         checkArray.push(values.value)
     })
-
     let filterCheck = allEvents.filter(event => checkArray.includes(event.category) || checkArray.length == 0)
     showCards(filterCheck, currentDate, container)
 })
