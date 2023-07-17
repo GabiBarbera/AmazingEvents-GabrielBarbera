@@ -10,7 +10,7 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
         let categories = allEvents.map(category => category.category)
         let nonRepeatingCategories = new Set(categories)
         let nonRepeatinArray = Array.from(nonRepeatingCategories)
-        showCards(allEvents)
+        showCards(allEvents, container)
         showInputs(nonRepeatinArray, inputsLabels)
     })
     .catch(error => console.log(error))
@@ -29,12 +29,12 @@ function createLetters(object) {
     </div>`
 }
 
-function showCards(arrayEvent) {
+function showCards(arrayEvent, place) {
     if (arrayEvent.length == 0) {
         container.innerHTML = `<h2>❌ oops something went wrong ❌</h2>`
     }
     for (let info of arrayEvent) {
-        container.innerHTML += createLetters(info)
+        place.innerHTML += createLetters(info)
     }
 }
 
@@ -61,9 +61,6 @@ function showInputs(array, where) {
         where.innerHTML += createInputs(element)
     }
 }
-
-
-
 const searchInput = document.getElementById("search")
 searchInput.addEventListener("input", () => {
     container.innerHTML = " "
@@ -71,11 +68,12 @@ searchInput.addEventListener("input", () => {
     let filterEvent = allEvents.filter(event => event.name.toLowerCase().includes(value))
     showCards(filterEvent, container)
 })
+
 function showValue(input) {
     let valueInput = input.value.toLowerCase()
+    console.log(showValue(valueInput));
     return valueInput
 }
-
 
 inputsLabels.addEventListener("change", () => {
     container.innerHTML = " "
