@@ -7,7 +7,11 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
     .then(answer => answer.json())
     .then(data => {
         allEvents = data.events
-        console.log(allEvents);
+        let categories = allEvents.map(category => category.category)
+        let nonRepeatingCategories = new Set(categories)
+        let nonRepeatinArray = Array.from(nonRepeatingCategories)
+        showCards(allEvents)
+        showInputs(nonRepeatinArray, inputsLabels)
     })
     .catch(error => console.log(error))
 
@@ -33,7 +37,7 @@ function showCards(arrayEvent) {
         container.innerHTML += createLetters(info)
     }
 }
-showCards(allEvents)
+
 
 function createSearch() {
     return `<input type="search" name="search" id="search" placeholder="Search... 🔎">`
@@ -58,7 +62,7 @@ function showInputs(array, where) {
     }
 }
 
-showInputs(nonRepeatinArray, inputsLabels)
+
 
 const searchInput = document.getElementById("search")
 searchInput.addEventListener("input", () => {

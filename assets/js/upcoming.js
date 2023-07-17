@@ -1,10 +1,20 @@
 let container = document.getElementById("upcomingCards")
-const dateEvent = data.currentDate
-const upcomingEvents = data.events
-let categories = upcomingEvents.map(category => category.category)
-let nonRepeatingCategories = new Set(categories)
-let nonRepeatinArray = Array.from(nonRepeatingCategories)
 const inputsLabels = document.getElementById("allInputs")
+let allEvents;
+let currentDate;
+
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    .then(answer => answer.json())
+    .then(data => {
+        allEvents = data.events
+        currentDate = data.currentDate
+        let categories = allEvents.map(category => category.category)
+        let nonRepeatingCategories = new Set(categories)
+        let nonRepeatinArray = Array.from(nonRepeatingCategories)
+        showCards(allEvents, currentDate, container)
+        showInputs(nonRepeatinArray, inputsLabels)
+    })
+    .catch(error => console.log(error))
 
 function createLetters(object) {
     return ` <div class="card col-md-2 float-md-end mb-3 ms-md-3 shadow-lg p-3 mb-5 bg-body-success rounded">
@@ -32,7 +42,7 @@ function showCards(array, date, place) {
     }
     place.innerHTML += template
 }
-showCards(upcomingEvents, dateEvent, container)
+
 
 function createSearch() {
     return `<input type="search" name="search" id="search" placeholder="Search... 🔎">`
@@ -57,14 +67,13 @@ function showInputs(array, where) {
     }
 }
 
-showInputs(nonRepeatinArray, inputsLabels)
 
 const searchInput = document.getElementById("search")
 searchInput.addEventListener("input", () => {
     container.innerHTML = " "
     let value = showValue(searchInput)
-    let event = upcomingEvents.filter(event => event.name.toLowerCase().includes(value))
-    showCards(event, dateEvent, container)
+    let event = allEvents.filter(event => event.name.toLowerCase().includes(value))
+    showCards(event, currentDate, container)
 })
 
 function showValue(input) {
@@ -80,7 +89,7 @@ inputsLabels.addEventListener("change", () => {
         checkArray.push(values.value)
     })
 
-    let filterCheck = upcomingEvents.filter(event => checkArray.includes(event.category) || checkArray.length == 0)
-    showCards(filterCheck, dateEvent, container)
+    let filterCheck = allEvents.filter(event => checkArray.includes(event.category) || checkArray.length == 0)
+    showCards(filterCheck, currentDate, container)
 })
 
