@@ -1,11 +1,11 @@
 const table1 = document.getElementById("tableOne")
 const table2 = document.getElementById("tableTwo")
 const table3 = document.getElementById("tableThree")
-const table4 = document.getElementById("tableFour")
-const table5 = document.getElementById("tableFive")
-const table6 = document.getElementById("tableSix")
+const table4 = document.getElementById("tablePast")
+const table5 = document.getElementById("tableUpComing")
 let date;
 let dataEvents;
+
 
 fetch("https://mindhub-xj03.onrender.com/api/amazing")
     .then(respuesta => respuesta.json())
@@ -29,11 +29,37 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
         tableThree(nameMajorCapacity, table3, majorCapacity.toLocaleString('de-DE'))
         let pastCategory = pastEvents.map(event => event.category)
         let pastCategoryArray = Array.from(new Set(pastCategory))
-        console.log(pastCategoryArray);
         let upCategory = UpEvents.map(event => event.category)
         let upCategoryArray = Array.from(new Set(upCategory))
-        console.log(upCategoryArray);
-        tableFour(upCategoryArray, table4)
+
+        let revenues;
+        let assistanceAverage
+
+        pastCategoryArray.forEach(pastCategory => {
+            revenues = 0
+            assistanceAverage = 0
+            let categoriesByEvents = pastEvents.filter(pastEvent => pastEvent.category == pastCategory)
+            categoriesByEvents.forEach(event => {
+                revenues += event.assistance * event.price
+                assistanceAverage += calculateHighPercentage(event.assistance, event.capacity)
+            })
+            revenues = revenues
+            assistanceAverage = assistanceAverage / categoriesByEvents.length
+            createRowTwo(pastCategory, assistanceAverage, revenues, table4)
+        })
+
+        upCategoryArray.forEach(upCategory => {
+            revenues = 0
+            assistanceAverage = 0
+            let categoriesByEvents = UpEvents.filter(upEvent => upEvent.category == upCategory)
+            categoriesByEvents.forEach(event => {
+                revenues += event.estimate * event.price
+                assistanceAverage += calculateHighPercentage(event.estimate, event.capacity)
+            })
+            revenues = revenues
+            assistanceAverage = assistanceAverage / categoriesByEvents.length
+            createRowTwo(upCategory, assistanceAverage, revenues, table5)
+        })
     }
     )
     .catch(error => console.log(error))
@@ -51,8 +77,12 @@ function tableThree(event, htmlContainer, percentage) {
     htmlContainer.innerHTML = `<td> ${event} ${percentage} </td>`
 }
 
-function tableFour(array, htmlContainer) {
-    for (const event of array) {
-        htmlContainer.innerHTML += `<tr> <td> ${event}</td> </tr>`
-    }
+function createRowTwo(name, asistenceAverage, revenues, place) {
+    place.innerHTML += `
+    <tr>
+    <td> ${name} </td>
+    <td> US$ ${revenues.toLocaleString('de-DE')} </td>
+    <td> ${asistenceAverage.toFixed(2)} % </td>
+     </tr>
+    `
 }
