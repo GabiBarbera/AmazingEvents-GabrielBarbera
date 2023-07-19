@@ -1,3 +1,4 @@
+import { calculateHighPercentage, tableOne, tableThree, createRowTwo } from "../modules/function.js"
 const table1 = document.getElementById("tableOne")
 const table2 = document.getElementById("tableTwo")
 const table3 = document.getElementById("tableThree")
@@ -64,25 +65,4 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
     )
     .catch(error => console.log(error))
 
-function calculateHighPercentage(assistance, capacity) {
-    let percentage = (assistance / capacity) * 100
-    return percentage
-}
 
-function tableOne(event, htmlContainer, percentage) {
-    htmlContainer.innerHTML = `<td> ${event.name} ${percentage} % </td>`
-}
-
-function tableThree(event, htmlContainer, percentage) {
-    htmlContainer.innerHTML = `<td> ${event} ${percentage} </td>`
-}
-
-function createRowTwo(name, asistenceAverage, revenues, place) {
-    place.innerHTML += `
-    <tr>
-    <td> ${name} </td>
-    <td> US$ ${revenues.toLocaleString('de-DE')} </td>
-    <td> ${asistenceAverage.toFixed(2)} % </td>
-     </tr>
-    `
-}
