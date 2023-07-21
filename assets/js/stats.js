@@ -9,7 +9,7 @@ let dataEvents;
 
 
 fetch("https://mindhub-xj03.onrender.com/api/amazing")
-    .then(respuesta => respuesta.json())
+    .then(response => response.json())
     .then(data => {
         dataEvents = data.events
         date = data.currentDate
@@ -44,7 +44,6 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
                 revenues += event.assistance * event.price
                 assistanceAverage += calculateHighPercentage(event.assistance, event.capacity)
             })
-            revenues = revenues
             assistanceAverage = assistanceAverage / categoriesByEvents.length
             createRowTwo(pastCategory, assistanceAverage, revenues, table4)
         })
@@ -57,7 +56,6 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
                 revenues += event.estimate * event.price
                 assistanceAverage += calculateHighPercentage(event.estimate, event.capacity)
             })
-            revenues = revenues
             assistanceAverage = assistanceAverage / categoriesByEvents.length
             createRowTwo(upCategory, assistanceAverage, revenues, table5)
         })
